@@ -2,6 +2,7 @@ package Services.implement;
 
 import Services.DemonstrationService;
 import Services.MessageService;
+import model.Message;
 import model.User;
 import realization.ChatDemo;
 
@@ -17,6 +18,7 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
         System.out.printf("==========Welcome to %s our Online Chat==========\n",currentUser.getUsername());
         System.out.println("1. Send message");
+        System.out.println("2. Inbox");
         System.out.println("0. Exite");
 
         String choiceStr = scanner.next();
@@ -41,7 +43,7 @@ public class DemonstrationServiceImp implements DemonstrationService {
                     System.out.println("Somthing went wrong!\n");
                 break;
             case 2:
-
+                inbox();
                 break;
             case 3:
 
@@ -104,6 +106,19 @@ public class DemonstrationServiceImp implements DemonstrationService {
                 break;
             default:
 
+        }
+    }
+
+    private void inbox() {
+
+        User currentUser = ChatDemo.currentUser;
+
+        int index = 1;
+        for (Message message : ChatDemo.messages) {
+            if (message.getRecipient() != null) {
+                if (message.getRecipient().getUsername().equals(currentUser.getUsername()))
+                    System.out.println(index++ + "\n" + message);
+            }
         }
     }
 }

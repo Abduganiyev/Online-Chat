@@ -2,6 +2,9 @@ package model;
 
 import enums.MsgStatus;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Message {
     private Long id;
     private String subject;
@@ -9,6 +12,7 @@ public class Message {
     private User sender;
     private User recipient;
     private MsgStatus status;
+    private String dateTime;
 
     public Message(Long id, String subject, String text, User sender, User recipient, MsgStatus status) {
         this.id = id;
@@ -17,6 +21,7 @@ public class Message {
         this.sender = sender;
         this.recipient = recipient;
         this.status = status;
+        this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(LocalDateTime.now());
     }
 
     public Long getId() {
@@ -65,5 +70,21 @@ public class Message {
 
     public void setStatus(MsgStatus status) {
         this.status = status;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public String toString() {
+        return  "Recipient: " + recipient + '\n' +
+                "Subject: " + subject + '\n' +
+                "Text: " + text + '\n' +
+                "DateTime: " + dateTime + '\n';
     }
 }

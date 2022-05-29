@@ -1,6 +1,7 @@
 package Services.implement;
 
 import Services.DemonstrationService;
+import Services.MessageService;
 import model.User;
 import realization.ChatDemo;
 
@@ -32,7 +33,12 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
         switch (choice) {
             case 1:
-
+                MessageService messageService = new MessageServiceImp();
+                boolean isSucces = messageService.send();
+                if (isSucces)
+                    System.out.println("Sent\n");
+                else
+                    System.out.println("Somthing went wrong!\n");
                 break;
             case 2:
 

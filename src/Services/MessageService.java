@@ -3,7 +3,7 @@ package Services;
 import model.Message;
 
 public interface MessageService {
-    boolean send(Message m);
-    boolean delete(Message m);
-    boolean edit(Message m);
+    boolean send();
+    boolean delete();
+    boolean edit();
 }

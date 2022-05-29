@@ -30,6 +30,12 @@ public class User implements Comparable<User> {
         this.singedIn = false;
     }
 
+    public User() {
+        LocalDateTime now = LocalDateTime.now();
+        this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(now);
+        this.singedIn = false;
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Set;
 
-public class Group {
+public class Group implements Comparable<Group>{
     private Long id;
     private String title;
     private String description;
@@ -55,5 +55,10 @@ public class Group {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public int compareTo(Group g) {
+        return this.title.compareTo(g.getTitle());
     }
 }

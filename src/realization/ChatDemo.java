@@ -28,6 +28,7 @@ public class ChatDemo {
         currentUser = null;
 
         users.add(new User(1L,"umar","asd123", UserRole.JUST_CURRENT,null,UserStatus.ACTIVE));
+        users.add(new User(2L,"bobur","asd123", UserRole.ADMIN,null,UserStatus.ACTIVE));
 
         int choice = -1;
         do {

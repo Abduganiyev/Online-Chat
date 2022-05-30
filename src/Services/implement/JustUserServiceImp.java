@@ -1,5 +1,7 @@
 package Services.implement;
 
+import enums.MsgStatus;
+import model.Group;
 import model.Message;
 import model.User;
 import realization.ChatDemo;
@@ -63,6 +65,26 @@ public class JustUserServiceImp implements Services.JustUserService {
             } else {
                 Message choice_message = messagesCurrenUser.get(choice - 1);
                 System.out.println(choice_message);
+
+                MsgStatus msgStatus = choice_message.getStatus();
+                switch (msgStatus) {
+                    case REQUEST:
+                        messagesCurrenUser.get(choice - 1).setStatus(MsgStatus.ACCEPTED);
+                        String groupTitle = choice_message.getText().substring(1, ')');
+
+                        for (Group group : ChatDemo.groups) {
+                            if (group != null) {
+                                if (group.getTitle().equalsIgnoreCase(groupTitle)) {
+                                    group.addUser(choice_message.getSender());
+                                    System.out.println("Request is accepted");
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case DELIVERED:
+                        break;
+                }
             }
         }
     }

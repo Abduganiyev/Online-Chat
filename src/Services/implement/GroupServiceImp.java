@@ -41,9 +41,11 @@ public class GroupServiceImp implements GroupService {
 
                 if (chooseGroup != null) {
 
+                    System.out.println();
                     for (Message message : chooseGroup.getMessageList()) {
                         System.out.println(message.getSender().getUsername() + ". " + message.getText());
                     }
+                    System.out.println();
 
                     System.out.printf("To group: %s",chooseGroup.getTitle());
                     System.out.print("\nMessage: ");
@@ -198,7 +200,7 @@ public class GroupServiceImp implements GroupService {
         User groupAdmin = g.getGroupAdmin();
         long nextId = ChatDemo.messages.size() + 1L;
 
-        String text = "Shu guruhga qabul qiling";
+        String text = "(" + g.getTitle() + ")" +" shu guruhga qabul qiling";
         Message request = new Message(nextId, "Request",text,ChatDemo.currentUser,groupAdmin, MsgStatus.REQUEST);
         return ChatDemo.messages.add(request);
     }

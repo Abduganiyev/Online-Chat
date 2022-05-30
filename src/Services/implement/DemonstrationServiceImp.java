@@ -1,18 +1,23 @@
 package Services.implement;
 
 import Services.DemonstrationService;
+import Services.JustUserService;
 import Services.MessageService;
 import model.Message;
 import model.User;
 import realization.ChatDemo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DemonstrationServiceImp implements DemonstrationService {
+    static Scanner scanner;
+
     @Override
     public void justUserMenu(User user) {
 
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
 
         User currentUser = ChatDemo.currentUser;
 
@@ -43,7 +48,9 @@ public class DemonstrationServiceImp implements DemonstrationService {
                     System.out.println("Somthing went wrong!\n");
                 break;
             case 2:
-                inbox();
+                JustUserService justUserService = new JustUserServiceImp();
+
+                justUserService.inbox();
                 break;
             case 3:
 
@@ -65,7 +72,8 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
     @Override
     public void adminMenu(User user) {
-        Scanner scanner = new Scanner(System.in);
+
+        scanner = new Scanner(System.in);
 
         User currentUser = ChatDemo.currentUser;
 
@@ -106,19 +114,6 @@ public class DemonstrationServiceImp implements DemonstrationService {
                 break;
             default:
 
-        }
-    }
-
-    private void inbox() {
-
-        User currentUser = ChatDemo.currentUser;
-
-        int index = 1;
-        for (Message message : ChatDemo.messages) {
-            if (message.getRecipient() != null) {
-                if (message.getRecipient().getUsername().equals(currentUser.getUsername()))
-                    System.out.println(index++ + "\n" + message);
-            }
         }
     }
 }

@@ -7,6 +7,7 @@ import enums.UserStatus;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class User implements Comparable<User> {
     private Long id;
@@ -30,10 +31,20 @@ public class User implements Comparable<User> {
         this.singedIn = false;
     }
 
+    public User(Long id, String username, String password, UserRole userRole) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.userRole = userRole;
+        this.groups = new TreeSet<>();
+        this.userStatus = UserStatus.ACTIVE;
+    }
+
     public User() {
         LocalDateTime now = LocalDateTime.now();
         this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(now);
         this.singedIn = false;
+        this.userStatus = UserStatus.ACTIVE;
     }
 
     public Long getId() {
@@ -106,6 +117,10 @@ public class User implements Comparable<User> {
 
     public void setSingedIn(boolean signedIn) {
         this.singedIn = signedIn;
+    }
+
+    public void addGroup(Group g) {
+        this.groups.add(g);
     }
 
     @Override

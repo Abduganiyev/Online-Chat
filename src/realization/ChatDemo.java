@@ -27,8 +27,12 @@ public class ChatDemo {
         groups = new TreeSet<>();
         currentUser = null;
 
-        users.add(new User(1L,"umar","asd123", UserRole.JUST_CURRENT,null,UserStatus.ACTIVE));
-        users.add(new User(2L,"bobur","asd123", UserRole.ADMIN,null,UserStatus.ACTIVE));
+        users.add(new User(1L,"umar","asd123", UserRole.JUST_CURRENT));
+        users.add(new User(2L,"bobur","asd123", UserRole.ADMIN));
+
+        groups.add(new Group(1L,"Kanallani dodasi","None", (User) users.toArray()[1]));
+
+        ((User) users.toArray()[1]).addGroup((Group) groups.toArray()[0]);
 
         int choice = -1;
         do {

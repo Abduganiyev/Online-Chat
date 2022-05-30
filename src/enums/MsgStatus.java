@@ -4,6 +4,7 @@ public enum MsgStatus {
     DELIVERED("Yuborildi"),
     CHECKED("Tekshirildi"),
     DAFT("Qoralama"),
+    REQUEST("Sorov"),
     FAILED("Qaytarildi"),
     ACCEPTED("Qabulqilindi");
 

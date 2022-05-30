@@ -24,10 +24,17 @@ public class Message {
         this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(LocalDateTime.now());
     }
 
-    public Message(Long id, String text, MsgStatus status) {
+    public Message(Long id, String text,User sender,User recipient, MsgStatus status) {
         this.id = id;
         this.text = text;
         this.status = status;
+        this.sender = sender;
+        this.recipient = recipient;
+        this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(LocalDateTime.now());
+    }
+
+    public Message() {
+        this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(LocalDateTime.now());
     }
 
     public Long getId() {
@@ -88,7 +95,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return  "Recipient: " + recipient + '\n' +
+        return  "Recipient: " + recipient.getUsername() + '\n' +
                 "Subject: " + subject + '\n' +
                 "Text: " + text + '\n' +
                 "DateTime: " + dateTime + '\n';

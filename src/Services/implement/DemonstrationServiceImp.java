@@ -31,7 +31,7 @@ public class DemonstrationServiceImp implements DemonstrationService {
         System.out.println("2. Inbox");
         System.out.println("3. Outbox");
         System.out.println("4. Sent message to group");
-        System.out.println("5. Create group/Subscribe");
+        System.out.println("5. Create new group/Subscribe");
         System.out.println("0. Exit");
 
         String choiceStr = scanner.next();
@@ -48,11 +48,11 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
         switch (choice) {
             case 1:
-                boolean isSucces = messageService.send();
-                if (isSucces)
+                boolean isSuccess = messageService.send();
+                if (isSuccess)
                     System.out.println("Sent\n");
                 else
-                    System.out.println("Somthing went wrong!\n");
+                    System.out.println("Something went wrong!\n");
                 break;
             case 2:
                 justUserService.inbox();
@@ -64,7 +64,12 @@ public class DemonstrationServiceImp implements DemonstrationService {
                 groupService.send();
                 break;
             case 5:
-
+                boolean isSuccesfuly = groupService.createNewGroup_Subscribe();
+                if (isSuccesfuly) {
+                    System.out.println("DONE\n");
+                } else {
+                    System.out.println("Somthing went wrong!\n");
+                }
                 break;
             case 0:
                 currentUser.setSingedIn(false);

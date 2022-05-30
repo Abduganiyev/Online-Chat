@@ -147,4 +147,15 @@ public class JustUserServiceImp implements Services.JustUserService {
             }
         }
     }
+
+    @Override
+    public void changePassword() {
+        scanner = new Scanner(System.in);
+
+        System.out.print("New Password: ");
+        String pass = scanner.next();
+
+        ChatDemo.currentUser.setPassword(pass);
+        System.out.println("Password successfully was changed!\n");
+    }
 }

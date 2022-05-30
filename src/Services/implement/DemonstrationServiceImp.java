@@ -29,6 +29,7 @@ public class DemonstrationServiceImp implements DemonstrationService {
         System.out.println("3. Outbox");
         System.out.println("4. Sent message to group");
         System.out.println("5. Create new group/Subscribe");
+        System.out.println("6. Change Password");
         System.out.println("0. Exit");
 
         String choiceStr = scanner.next();
@@ -68,6 +69,8 @@ public class DemonstrationServiceImp implements DemonstrationService {
                     System.out.println("Somthing went wrong!\n");
                 }
                 break;
+            case 6:
+                justUserService.changePassword();
             case 0:
                 currentUser.setSingedIn(false);
                 break;
@@ -89,7 +92,8 @@ public class DemonstrationServiceImp implements DemonstrationService {
         System.out.println("1. View Users");
         System.out.println("2. Block Users");
         System.out.println("3. Activate Users");
-        System.out.println("4. Change Password");
+        System.out.println("4. Delete Users");
+        System.out.println("5. Change Password");
         System.out.println("0. Exit");
 
         String choiceStr = scanner.next();

@@ -24,6 +24,12 @@ public class Message {
         this.dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(LocalDateTime.now());
     }
 
+    public Message(Long id, String text, MsgStatus status) {
+        this.id = id;
+        this.text = text;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }

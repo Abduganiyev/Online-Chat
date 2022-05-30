@@ -69,5 +69,55 @@ public class JustUserServiceImp implements Services.JustUserService {
     @Override
     public void outbox() {
 
+        scanner = new Scanner(System.in);
+
+        User currentUser = ChatDemo.currentUser;
+
+        List<Message> messagesCurrenUser = new ArrayList<>();
+        for (Message message : ChatDemo.messages) {
+            if (message != null) {
+                if (message.getSender().getUsername().equals(currentUser.getUsername())) {
+                    messagesCurrenUser.add(message);
+                }
+            }
+        }
+
+        System.out.println();
+
+        boolean exit = true;
+        while (exit) {
+            int index = 1;
+            for (Message message : messagesCurrenUser) {
+                if (message != null) {
+                    if (message.getSender().getUsername().equals(currentUser.getUsername())) {
+                        System.out.println(index++ + "\n" + message);
+                    }
+                }
+            }
+
+            if (messagesCurrenUser.size() == 0) {
+                System.out.println("Empty");
+                break;
+            }
+            System.out.println("- exit");
+            System.out.print("Choice: ");
+            String choiceStr = scanner.next();
+            int choice = -1;
+
+            for (char c : choiceStr.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    choice = Integer.parseInt(String.valueOf(c));
+                }
+            }
+
+            if (choice == -1) {
+                if ("-".equals(choiceStr)) {
+                    exit = false;
+                }
+            } else {
+                Message choice_message = messagesCurrenUser.get(choice - 1);
+                System.out.println(choice_message);
+            }
+        }
     }
 }

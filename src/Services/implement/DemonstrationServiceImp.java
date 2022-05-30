@@ -1,9 +1,6 @@
 package Services.implement;
 
-import Services.DemonstrationService;
-import Services.GroupService;
-import Services.JustUserService;
-import Services.MessageService;
+import Services.*;
 import model.Message;
 import model.User;
 import realization.ChatDemo;
@@ -85,11 +82,15 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
         scanner = new Scanner(System.in);
 
+        AdminService adminService = new AdminServiceImp();
         User currentUser = ChatDemo.currentUser;
 
         System.out.printf("==========Welcome to %s our Admin menu==========\n",currentUser.getUsername());
         System.out.println("1. View Users");
-        System.out.println("0. Exite");
+        System.out.println("2. Block Users");
+        System.out.println("3. Activate Users");
+        System.out.println("4. Change Password");
+        System.out.println("0. Exit");
 
         String choiceStr = scanner.next();
         int choice = -1;
@@ -105,19 +106,26 @@ public class DemonstrationServiceImp implements DemonstrationService {
 
         switch (choice) {
             case 1:
-
+                adminService.viewUsers();
                 break;
             case 2:
-
+                boolean blockUser = adminService.blockUser();
+                if (blockUser) {
+                    System.out.println("The user is blocked\n");
+                }
                 break;
             case 3:
-
+                boolean activateUser = adminService.activateUser();
+                if (activateUser)
+                    System.out.println("The user is activated\n");
                 break;
             case 4:
-
+                adminService.deleteUser();
                 break;
             case 5:
-
+                boolean changePassword = adminService.changePassword();
+                if (changePassword)
+                    System.out.println("Password successfully was change!\n");
                 break;
             case 0:
                 currentUser.setSingedIn(false);

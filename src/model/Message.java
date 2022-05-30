@@ -95,9 +95,8 @@ public class Message {
 
     @Override
     public String toString() {
-        return  "Recipient: " + recipient.getUsername() + '\n' +
+        return  "Sender: " + sender.getUsername() + '\n' +
                 "Subject: " + subject + '\n' +
-                "Text: " + text + '\n' +
                 "DateTime: " + dateTime + '\n';
     }
 }

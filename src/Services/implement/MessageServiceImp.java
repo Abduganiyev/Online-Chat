@@ -49,4 +49,25 @@ public class MessageServiceImp implements MessageService {
     public boolean edit() {
         return false;
     }
+
+    @Override
+    public boolean readInbox() {
+
+        for (Message message : ChatDemo.messages) {
+            if (message != null) {
+                if (message.getSender().getUsername().equals(ChatDemo.currentUser.getUsername())) {
+                    if (message.getStatus() == MsgStatus.DELIVERED) {
+                        System.out.println(message);
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean readOutbox() {
+        return false;
+    }
 }

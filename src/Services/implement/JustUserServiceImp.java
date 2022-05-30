@@ -1,5 +1,6 @@
 package Services.implement;
 
+import Services.MessageService;
 import enums.MsgStatus;
 import model.Group;
 import model.Message;
@@ -57,6 +58,7 @@ public class JustUserServiceImp implements Services.JustUserService {
             if (choice == -1) {
                 switch (choiceStr) {
                     case "+":
+
                         break;
                     case "-":
                         exit=false;
@@ -83,6 +85,9 @@ public class JustUserServiceImp implements Services.JustUserService {
                         }
                         break;
                     case DELIVERED:
+                        MessageService messageService = new MessageServiceImp();
+
+                        messageService.readInbox();
                         break;
                 }
             }
